@@ -1,0 +1,95 @@
+Largest subarray with 0 sum
+******************************
+Thought process
+Prefix Sum ka Concept: Sabse pehle, humko ek important concept ko samajhna padega, jo hai Prefix Sum. Prefix sum ka matlab hai ki ek array me kisi bhi index tak ka sum. Agar hum yeh sum calculate kar lein, toh hum efficiently subarrays ko track kar sakte hain.
+Prefix Sum ke saath HashMap ka Use: Hum Prefix Sum ke har value ko ek HashMap me store kar sakte hain. Agar humare paas koi prefix sum value repeat hoti hai, iska matlab hai ki humne kuch elements ko phir se sum kiya hai, aur unke beech ka subarray sum 0 ho sakta hai.
+Agar kisi bhi point pe, prefix sum ka value pehle se hash map me exist karta hai, toh iska matlab woh subarray 0 sum ke saath ho sakta hai. Yeh humko directly largest subarray ka length nikaalne me madad karta hai.
+********
+class Solution {
+    int maxLen(int arr[]) {
+        
+        // code here
+        int n=arr.length,maxlen=0;
+        int sum=0;
+        HashMap<Integer,Integer> h=new HashMap<>();
+        for(int i=0;i<n;i++){
+            sum+=arr[i];
+        if(sum==0){
+            maxlen=i+1;
+        }
+        else if(h.containsKey(sum)){
+            maxlen=Math.max(maxlen,i-h.get(sum));
+        }
+          else{
+                h.put(sum,i);
+          } 
+            
+        }
+        return maxlen;
+    }
+}
+*************
+maximum-subarray
+**************
+Jab bhi “largest sum” ya “maximum sum subarray” type ki problems aaye, tab hume Kadane’s Algorithm ke baare me sochna chahiye.
+problem ko solve karne ke liye 2 main observations important hai:
+********
+Kadane’s Algorithm Ka Thought Process
+Ek variable maxSum rakhenge, jo maximum sum store karega. Initially, isko array ke first element se initialize karenge.
+Ek currentSum variable rakhenge, jo ab tak ka running sum store karega.
+Array ke elements par iterate karenge aur currentSum me elements ko add karte chalenge.
+Agar currentSum negative ho jaye, toh usko 0 reset karenge kyunki koi bhi negative sum overall maximum sum ko kam karega.
+Har iteration me maxSum ko update karenge jo ab tak ka maximum subarray sum store karega.
+End me maxSum return kar denge, jo hume required answer dega
+*******************
+class Solution {
+    public int maxSubArray(int[] nums) {
+       int sum=0,maxSum=Integer.MIN_VALUE,n=nums.length;
+        
+       for(int i=0;i<n;i++){
+          sum+=nums[i];
+          maxSum=Math.max(maxSum,sum);
+         if(sum<0){
+            sum=0;
+         }
+         
+       }
+       return maxSum;
+    }
+}
+
+
+
+
+
+
+****************************************************
+1️⃣ Ek continuous subarray lena hai, aur hume maximum sum find karna hai.
+
+Sliding window ya prefix sum kaafi time slow ho sakta hai (O(n²) ya O(n³)).
+Dynamic programming ya greedy approach ki soch aani chahiye.
+2️⃣ Negative sum ko ignore karna chahiye.
+
+Agar kisi subarray ka sum negative ho jaye, toh usko carry forward karne ka koi fayda nahi hai.
+Is wajah se, running sum agar negative ho jaye toh reset karna better hota hai.
+Yeh Kadane’s Algorithm ka core idea hai!
+
+***************
+ Kadane’s Algorithm Use Karne Wali Problems
+1️⃣ Maximum Sum Subarray (Yeh wali problem)
+
+Example: [-2,1,-3,4,-1,2,1,-5,4]
+Kadane’s Algorithm ka use hoga kyunki negative sum ko ignore karke max sum dhoondhna hai.
+2️⃣ Largest Sum of Circular Subarray
+
+Jab subarray circular ho sakta ho (i.e., array ka end start se jod sakta hai).
+Iske liye modified Kadane’s Algorithm use hota hai.
+3️⃣ Max Product Subarray
+
+Kadane’s Algorithm ka modified version use hota hai, jisme hum min/max product track karte hai.
+Example: [2,3,-2,4] → Max product = 6
+4️⃣ Find Smallest/Largest Sum Contiguous Subarray
+
+Agar kisi subarray ka smallest sum dhoondhna ho, toh bhi Kadane’s Algorithm ka negative version kaam karta hai.
+*******
+

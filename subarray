@@ -91,5 +91,42 @@ Example: [2,3,-2,4] → Max product = 6
 4️⃣ Find Smallest/Largest Sum Contiguous Subarray
 
 Agar kisi subarray ka smallest sum dhoondhna ho, toh bhi Kadane’s Algorithm ka negative version kaam karta hai.
-*******
+*************************************************
+count-number-of-nice-subarrays
+Jab bhi ek subarray count karne ka problem aaye jo "at most" ya "exactly" k type ka condition maange, tab Sliding Window ek strong candidate hota hai
+Sliding Window Logic Ka Breakdown
+🔹 Sliding window ka concept:
 
+Ek left aur ek right pointer le lenge.
+right pointer badhate jaenge aur odd numbers ka count track karenge.
+Jab odd count k ho jaye, to possible subarrays count karenge.
+left ko shift karenge taaki naye valid subarrays mile.
+🔹 Kya count karna hai?
+
+Jab oddCount == k ho jaye, tab left pointer ko shift karne ka count nikalna hai
+********
+class Solution {
+    public int numberOfSubarrays(int[] nums, int k) {
+        int oddCount=0;
+        int i=0,j=0,n=nums.length,count=0,result=0;
+        while(j<n){
+            if(nums[j]%2==1){
+                oddCount+=1;
+                count=0;
+            }
+           
+               while(oddCount==k){
+                    count++;
+                   if(i<n && nums[i]%2==1){
+                        oddCount--;
+                   }
+                   i++;
+               }
+              result+=count;
+              j++;
+            
+        }
+        return result;
+    }
+}
+**********

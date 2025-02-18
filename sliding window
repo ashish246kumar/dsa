@@ -55,6 +55,59 @@ class Solution:
           
         return maxlen          
 **********************************************************
+Find length of the longest subarray containing atmost two distinct integers
+************
+
+ass Solution {
+    public static int totalElements(Integer[] arr) {
+        // code here
+        HashMap<Integer,Integer> h=new HashMap<>();
+        
+        int left=0,right=0,n=arr.length,maxlen=0;
+        while(left<=right){
+            h.put(arr[right],h.getOrDefault(arr[right],0)+1);
+            while(h.size()>2){
+                h.put(arr[left],h.get(arr[left])-1);
+                if(h.get(arr[left])==0){
+                    h.remove(arr[left]);
+                }
+                left++;
+            }
+            maxlen=Math.max(maxlen,right-left+1);
+            right++;
+        }
+        return maxlen;
+        
+    }
+}
+
+or
+from collections import defaultdict
+
+class Solution:
+    def totalElements(self,arr):
+        dict1=defaultdict(int)
+        
+        left=0
+        right=0
+        maxlen=0
+        n=len(arr)
+        while right<n:
+            dict1[arr[right]]+=1
+            while len(dict1)>2:
+                dict1[arr[left]]-=1
+                if dict1[arr[left]]==0:
+                    del dict1[arr[left]]
+                
+                left+=1
+            maxlen=max(maxlen,right-left+1) 
+            right+=1
+        return maxlen    
+        # Code here
+*********
+
+
+
 
 
         

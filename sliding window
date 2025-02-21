@@ -104,8 +104,29 @@ class Solution:
             right+=1
         return maxlen    
         # Code here
-*********
-
+*********************************************************************
+424)Longest repeating character replacement
+*********************************
+class Solution {
+    public int characterReplacement(String s, int k) {
+        HashMap<Character,Integer> h=new HashMap<>();
+        int n=s.length(),left=0,right=0,maxfreq=0,result=0;
+        while(right<n){
+            char ch=s.charAt(right);
+            h.put(ch,h.getOrDefault(ch,0)+1);
+            maxfreq=Math.max(maxfreq,h.get(ch));
+            while((right-left+1)-maxfreq>k){
+                char ch1=s.charAt(left);
+                 h.put(ch1,h.get(ch1)-1);
+                 left+=1; 
+            }
+            result=Math.max(result,right-left+1);
+            right++;
+        }
+        return result;
+    }
+}
+**********************************************************************************
 
 
 

@@ -148,5 +148,38 @@ class Solution {
     }
 }
 *******************************************************************************************
+maximum-points-you-can-obtain-from-cards
+*******************************************************************
+class Solution {
+    public int maxScore(int[] cardPoints, int k) {
+        int start=0,n=cardPoints.length,sum=0,max=0;
+        int end=n-1;
+
+        while(start<k){
+
+            
+            sum=sum+cardPoints[start];
+            
+            start++;
+            
+        }   
+        if(k==n){
+            return sum;
+        }
+        max=sum;
+        while(start>0){
+               start=start-1;
+                sum=sum-cardPoints[start];
+                sum=sum+cardPoints[end];
+                max=Math.max(max,sum);
+                end--;
+        }
+            
+        
+        return max;
+
+    }
+}
+**************************************************************************************************************
 
         

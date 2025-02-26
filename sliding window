@@ -127,8 +127,26 @@ class Solution {
     }
 }
 **********************************************************************************
-
-
-
+1358
+Number-of-substrings-containing-all-three-characters
+*******************
+class Solution {
+    public int numberOfSubstrings(String s) {
+        int n=s.length();
+        int[] freq=new int[3];
+        int start=0,end=0,count=0;
+        for(int i=0;i<n;i++){
+            char ch=s.charAt(i);
+            freq[ch-'a']+=1;
+            while(freq[0]>0 && freq[1]>0 && freq[2]>0){
+                count=count+(n-i);
+                freq[s.charAt(start)-'a']-=1;
+                start++;
+            }
+        }
+         return count;
+    }
+}
+*******************************************************************************************
 
         

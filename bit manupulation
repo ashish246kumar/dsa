@@ -8,4 +8,38 @@ class CheckBit {
         return (n&(1<<k))!=0;
     }
 }
-***********
+***********************************
+to find the rightmost bit of n do
+n&1
+*****
+to shift the right most bit
+n>>k
+**********************************************************************************************************************
+minimum-flips-to-make-a-or-b-equal-to-c
+*********************
+class Solution {
+    public int minFlips(int a, int b, int c) {
+        int flip=0;
+        while(a!=0 || b!=0 || c!=0){
+            if((c&1)==1){
+                if((a&1)==0 && (b&1)==0){
+                    flip++;
+                }
+               
+            }
+            else if ((c&1)==0){
+                if((a&1)==1){
+                    flip++;
+                }
+                if((b&1)==1){
+                    flip++;
+                }
+            }
+            a=a>>1;
+            b=b>>1;
+            c=c>>1;
+        }
+        return flip;
+    }
+}
+****************************************************

@@ -9,6 +9,17 @@ class CheckBit {
     }
 }
 ***********************************
+Set the rightmost unset bit
+
+class Solution {
+    static int setBit(int n) {
+        // code here
+        return (n|(n+1));
+    }
+}
+***************************
+if n&1==0 then even number and if n&0=0 then it is odd.
+*******************************************************
 to find the rightmost bit of n do
 n&1
 *****

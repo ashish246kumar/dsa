@@ -18,7 +18,7 @@ class Solution {
     }
 }
 ***************************
-if n&1==0 then even number and if n&0=0 then it is odd.
+if n&1==0 then even number and if n&1=1 then it is odd.
 *******************************************************
 to find the rightmost bit of n do
 n&1

@@ -200,8 +200,48 @@ class Solution{
 }
 **************************************
 
+find-the-original-array-of-prefix-xor
+*******************
+class Solution {
+    public int[] findArray(int[] pref) {
+        int n=pref.length;
+        int[]ans=new int[n];
+        ans[0]=pref[0];
+        for(int i=1;i<n;i++){
+            ans[i]=pref[i-1]^pref[i];
+        }
+        return ans;
+    }
+}
 
-
+*****************
+pref[0]={a0}
+pref[1]={a0,a1}
+pref[2]={a0,a1,a2}
+pref[3]={a0,a1,a2,a3}
+pref[4]={a0,a1,a2,a3,a4}=pref[3]^pref[4]
+***************************************************************
+sort-integers-by-the-number-of-1-bits
+************
+class Solution {
+    public int[] sortByBits(int[] arr) {
+        Integer[] boxedArray=Arrays.stream(arr).boxed().toArray(Integer[]::new);
+      
+        Arrays.sort(boxedArray,
+            (a,b)->{
+                int countof1bitOfA=Integer.bitCount(a);
+                  int countof1bitOfB=Integer.bitCount(b);
+                  if(countof1bitOfA==countof1bitOfB){
+                     return a.compareTo(b);
+                  }
+                  return Integer.compare(countof1bitOfA,countof1bitOfB);
+            }
+        );
+        int[] c=Arrays.stream(boxedArray).mapToInt(Integer::intValue).toArray();
+      
+        return c;
+    }
+}
  
 
 

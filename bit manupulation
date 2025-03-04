@@ -320,4 +320,42 @@ When we XOR these:
 = 0 ⊕ 0 ⊕ 0 ⊕ 4 ⊕ 5 ⊕ 6 ⊕ 7 ⊕ 8
 = 4 ⊕ 5 ⊕ 6 ⊕ 7 ⊕ 8
 ************************************************************
+Find two number appearing odd no of times
+******************************
+import java.util.*;
+
+class Solution {
+    public static List<Integer> twoOddOccurrences(int[] arr) {
+        int xor = 0;
+        
+        // Step 1: XOR all elements
+        for (int num : arr) {
+            xor ^= num;
+        }
+        
+        // Step 2: Find the rightmost set bit (differentiating bit)
+        int diffBit = xor & -xor;
+        int num1 = 0, num2 = 0;
+        
+        // Step 3: Divide numbers into two groups based on the differentiating bit
+        for (int num : arr) {
+            if ((num & diffBit) == 0) {
+                num1 ^= num; // Group 1
+            } else {
+                num2 ^= num; // Group 2
+            }
+        }
+        
+        // Step 4: Return numbers in decreasing order
+        List<Integer> result = new ArrayList<>();
+        result.add(Math.max(num1, num2));
+        result.add(Math.min(num1, num2));
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {4, 2, 4, 5, 2, 3, 3, 1};
+        System.out.println(twoOddOccurrences(arr));  // Output: [5, 1]
+    }
+}
 

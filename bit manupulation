@@ -243,5 +243,52 @@ class Solution {
     }
 }
  
+**********
+Left shift (<<): Number ko 2 se multiply karta hai (jaise 3 << 1 = 6).
+Right shift (>>): Number ko 2 se divide karta hai (jaise 6 >> 1 = 3).
+************************************
+divide-two-integers
+**************
+class Solution {
+    public int divide(int dividend, int divisor) {
+        int sign=-1,result=0;
+        int MAX_INT = Integer.MAX_VALUE;
+        int MIN_INT = Integer.MIN_VALUE;
+
+        if(dividend==MIN_INT && divisor ==-1){
+            return MAX_INT;
+        }
+        if(dividend>0 && divisor>0 || dividend<0  && divisor<0){
+            sign=1;
+        }
+        long dvd = Math.abs((long) dividend);
+        long dvs = Math.abs((long) divisor);
+
+        // Quotient ko 0 se start karo
+        int quotient = 0;
+
+        // Loop jab tak dividend divisor se bada hai
+        while (dvd >= dvs) {
+            long currDivisor = dvs;  // Har baar original divisor se start
+            long multiple = 1;       // Multiple bhi reset
+
+            // Divisor ko shift karo jab tak dividend se chhota hai
+            while (dvd >= (currDivisor << 1)) {
+                currDivisor <<= 1;
+                multiple <<= 1;
+            }
+
+            // Subtract karo aur quotient update karo
+            dvd -= currDivisor;
+            quotient += multiple;
+        }
+
+        // Sign apply karo
+        return sign * quotient;
+      
+       
+    }
+}
+****************************************************************************************
 
 

@@ -290,5 +290,34 @@ class Solution {
     }
 }
 ****************************************************************************************
-
+class Solution {
+      public static int findXOR(int l, int r) {
+          return findXOR1(l-1)^findXOR1(r);
+      }
+    public static int findXOR1(int n) {
+       if(n%4==0){
+           return n;
+       }
+       else if(n%4==3){
+           return 0;
+       }
+       else if(n%4==2){
+           return n+1;
+       }
+       else{
+           return 1;
+       }
+       
+    }
+}
+XOR(L to R) = XOR(1 to R) ⊕ XOR(1 to L-1)
+Let's say L=4 and R=8
+XOR(1 to 8) = 1 ⊕ 2 ⊕ 3 ⊕ 4 ⊕ 5 ⊕ 6 ⊕ 7 ⊕ 8
+XOR(1 to 3) = 1 ⊕ 2 ⊕ 3
+When we XOR these:
+(1 ⊕ 2 ⊕ 3 ⊕ 4 ⊕ 5 ⊕ 6 ⊕ 7 ⊕ 8) ⊕ (1 ⊕ 2 ⊕ 3)
+= (1 ⊕ 1) ⊕ (2 ⊕ 2) ⊕ (3 ⊕ 3) ⊕ 4 ⊕ 5 ⊕ 6 ⊕ 7 ⊕ 8
+= 0 ⊕ 0 ⊕ 0 ⊕ 4 ⊕ 5 ⊕ 6 ⊕ 7 ⊕ 8
+= 4 ⊕ 5 ⊕ 6 ⊕ 7 ⊕ 8
+************************************************************
 

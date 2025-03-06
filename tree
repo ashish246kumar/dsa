@@ -537,3 +537,44 @@ class Solution {
 
     }
 }
+
+or
+
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if(!root)
+            return NULL;
+        
+        if(root->val == p->val || root->val == q->val)
+            return root;
+        
+        TreeNode* l = lowestCommonAncestor(root->left, p, q);
+        TreeNode* r = lowestCommonAncestor(root->right, p, q);
+        
+        if(l && r)
+            return root;
+        
+        return l?l:r;
+    }
+};
+***************************
+ye last me return karne se 
+left aur right ke traverse ke bad mujhe result chaiye  isliye mai dono ke ane ke bad result return karunga  compare karke
+ if(l && r)
+            return root;
+hume kya chijhe comparision karwani hai jisse hume null puchne se phele result mil jaye
+  if(root->val == p->val || root->val == q->val)
+            return root;
+
+phela statement kab recursion rukega
+if(!root)
+            return NULL;
+
+niche diye gaye code ka matlab l aur r ka root return karega.
+TreeNode* l = lowestCommonAncestor(root->left, p, q);
+        TreeNode* r = lowestCommonAncestor(root->right, p, q);
+        
+        if(l && r)
+            return root;
+***************************************************************

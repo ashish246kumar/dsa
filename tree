@@ -578,7 +578,7 @@ TreeNode* l = lowestCommonAncestor(root->left, p, q);
         if(l && r)
             return root;
 ***************************************************************
-check-completeness-of-a-binary-tree
+Right view of a tree
 ************
 class Solution {
     public List<Integer> rightSideView(TreeNode root) {
@@ -609,3 +609,29 @@ class Solution {
         }
 }
 ***********
+***************************************************************
+check-completeness-of-a-binary-tree
+************
+class Solution {
+    public boolean isCompleteTree(TreeNode root) {
+        TreeNode temp=null;
+        Queue<TreeNode> q=new LinkedList<TreeNode>();
+        q.add(root);
+        boolean past=false;
+        while(!q.isEmpty()){
+            temp=q.poll();
+            if(temp==null){
+                past=true;
+            }
+            else if(temp!=null && past==true){
+                return false;
+            }
+            else{
+                q.add(temp.left);
+                q.add(temp.right);
+            }
+        }
+        return true;
+    }
+}
+*************************************************************************************

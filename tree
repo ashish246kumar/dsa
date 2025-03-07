@@ -726,4 +726,25 @@ class Solution {
     }
 }
 **********************
+import java.util.*;
+
+class Solution {
+    List<Integer> getLeafNodes(Node root) {
+        List<Integer> leafNodes = new ArrayList<>();
+        findLeaves(root, leafNodes);
+        return leafNodes;
+    }
+
+    private void findLeaves(Node root, List<Integer> leafNodes) {
+        if (root == null) {
+            return;
+        }
+        if (root.left == null && root.right == null) {
+            leafNodes.add(root.data); // Store the leaf node value
+        }
+        findLeaves(root.left, leafNodes);
+        findLeaves(root.right, leafNodes);
+    }
+}
+**********************
 

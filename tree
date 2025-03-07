@@ -681,3 +681,49 @@ class Solution {
        
     }
 }
+*************
+class Solution {
+    private int count=0;
+    int countLeaves(Node root) {
+
+       
+        returnNoOfLeave(root);
+        return count;
+    }
+    public void returnNoOfLeave(Node root){
+        if(root==null){
+            return;
+        }
+        returnNoOfLeave(root.left);
+        returnNoOfLeave(root.right);
+        if(root.left==null && root.right==null){
+            count++;
+           
+        }
+    }
+}
+**********************
+count-leaves-in-binary-tree
+************************************
+class Solution {
+    private int count=0;
+    int countLeaves(Node root) {
+
+       
+        returnNoOfLeave(root);
+        return count;
+    }
+    public void returnNoOfLeave(Node root){
+        if(root==null){
+            return;
+        }
+        returnNoOfLeave(root.left);
+        returnNoOfLeave(root.right);
+        if(root.left==null && root.right==null){
+            count++;
+           
+        }
+    }
+}
+**********************
+

@@ -60,3 +60,20 @@ class Solution {
     }
 }
 **********************************
+excel-sheet-column-title
+*************************
+class Solution {
+    public String convertToTitle(int columnNumber) {
+        String s="";
+        
+        while(columnNumber>0){
+            int rem=columnNumber%26;
+            columnNumber=(rem==0?(columnNumber-1):columnNumber);
+            char ch=(rem==0?'Z':(char)('A'+rem-1));
+            columnNumber=columnNumber/26;
+            s=ch+s;
+
+        }
+        return s;
+    }
+}

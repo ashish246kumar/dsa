@@ -796,4 +796,30 @@ al.remove(al.size()-1);
 }
 }
 ****************************************
+path sum 3
 
+**********
+class Solution {
+    int total=0;
+    public int pathSum(TreeNode root, int targetSum) {
+        if(root==null){
+            return 0;
+        }
+        helper(root,0,targetSum);
+        pathSum(root.left,targetSum);
+        pathSum(root.right,targetSum);
+        return total;
+    }
+    public void helper(TreeNode root, long sum,int targetSum){
+        if(root==null){
+            return;
+        }
+       
+        if((sum+root.val)==targetSum){
+            total++;
+        }
+        helper(root.left,sum+root.val,targetSum);
+        helper(root.right,sum+root.val,targetSum);
+         
+    }
+}

@@ -747,4 +747,53 @@ class Solution {
     }
 }
 **********************
+path-sum
+**************************************************************************************************************************
+class Solution {
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        return hasPathSum(root,0,targetSum);
+    }
+    public boolean hasPathSum(TreeNode root,int sum, int targetSum){
+        if(root==null){
+            return false;
+        }
+        if(root.left==null && root.right==null && sum+root.val==targetSum){
+            return true;
+        }
+      if(hasPathSum(root.left,sum+root.val,targetSum)||
+        hasPathSum(root.right,sum+root.val,targetSum)){
+            return true;
+        }
+        return false;
+
+    }
+}
+************************************************************************************************************
+path sum 2
+**********************************************
+class Solution {
+    List<List<Integer>> ans=new ArrayList<>();
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+List<Integer> al=new ArrayList<>();
+findSum(root,0,targetSum,al);
+return ans;
+
+}
+public void findSum(TreeNode root,int sum, int targetSum,List<Integer> al){
+    if(root==null){
+        return;
+    }
+     al.add(root.val);
+    if(root.left==null &&  root.right==null && sum+root.val==targetSum){
+       
+        ans.add(new ArrayList<>(al));
+        
+    }
+
+findSum(root.left,sum+root.val,targetSum,al);
+findSum(root.right,sum+root.val,targetSum,al);
+al.remove(al.size()-1);
+}
+}
+****************************************
 

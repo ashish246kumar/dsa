@@ -823,3 +823,53 @@ class Solution {
          
     }
 }
+**********************************
+Top View of Binary Tree
+
+import java.util.*;
+class Pair<K,V>{
+    private K key;
+    private V value;
+    public Pair(K key,V value){
+        this.key=key;
+        this.value=value;
+    }
+    public K getKey(){
+        return key;
+    }
+    public V getValue(){
+        return value;
+    }
+}
+class Solution {
+    // Function to return a list of nodes visible from the top view
+    // from left to right in Binary Tree.
+    static ArrayList<Integer> topView(Node root) {
+        // code here
+        Map<Integer,Integer> map=new TreeMap<>();
+        ArrayList<Integer> ans=new ArrayList<>();
+        Queue<Pair<Node,Integer>> q=new LinkedList<>();
+        q.add(new Pair<>(root,0));
+        while(!q.isEmpty()){
+            Pair<Node,Integer> p=q.poll();
+            Node key=p.getKey();
+            int line=p.getValue();
+            if(!map.containsKey(line)){
+                map.put(line,key.data);
+            }
+            if(key.left!=null){
+                q.add(new Pair<>(key.left,line-1));
+
+            }
+            
+             if(key.right!=null){
+                q.add(new Pair<>(key.right,line+1));
+
+            }
+            
+        }
+        ans.addAll(map.values());
+        return ans;
+    }
+}
+**************
